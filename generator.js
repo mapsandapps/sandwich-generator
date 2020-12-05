@@ -39,24 +39,37 @@ const getAvailableDigits = (i, j) => {
   return availableDigits
 }
 
+const findProblemDigit = (i, j) => {
+  // get all available digits for the column
+  var availableColDigits = _.pullAll(_.clone(digits), getColDigits(i, j))
+
+  // if one of those is in the row, replace that digit with a '.'
+  var l = _.indexOf(getRowDigits(i, j), availableColDigits[0])
+  // grid[i][l] = '.'
+  // printGrid()
+  setDigit(i, l)
+  console.log(JSON.stringify(grid))
+}
+
 const setDigit = (i, j) => {
   var availableDigits = getAvailableDigits(i, j)
 
-  // TODO: handle if availableDigits is empty
-  const digitToSet = availableDigits[_.random(availableDigits.length - 1)]
-  if (digitToSet > 0) {
-    return digitToSet
+  if (availableDigits.length < 1) {
+    // findProblemDigit(i, j)
+    grid[i][j] = '.'
   } else {
-    return "."
+    grid[i][j] = availableDigits[_.random(availableDigits.length - 1)]
   }
+
+  printGrid()
 }
 
 const findFirstDot = () => {
   grid.some((row, i) => {
     var j = _.indexOf(row, '.')
     if (j > -1) {
-      console.log(i, j)
-      return [i, j]
+      findProblemDigit(i, j)
+      return
     }
   })
 }
@@ -65,7 +78,7 @@ const setGrid = () => {
   grid = _.times(SIZE, () => _.clone(initialRow))
   _.map(grid, (row, i) => {
     _.map(row, (item, j) => {
-      grid[i][j] = setDigit(i, j)
+      setDigit(i, j)
     })
   })
 }
@@ -103,11 +116,10 @@ const printGrid = () => {
 
   html += "<br><br><div>"
   html += JSON.stringify(json)
-  console.log(json)
 
   html += "</div>"
 
-  return html
+  document.getElementById("grid").innerHTML = html
 }
 
 const helloWorld = () => {
@@ -115,10 +127,7 @@ const helloWorld = () => {
 }
 
 const generate = () => {
-  console.log("generate")
   setGrid()
-
-  document.getElementById("grid").innerHTML = printGrid()
 }
 
 document.getElementById("generate").onclick = generate
