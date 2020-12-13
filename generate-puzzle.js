@@ -4,7 +4,8 @@
 
 var completeGrid
 
-const difficulty = 0.7
+const difficultySums = 0.5
+const difficultyGrid = 0.8
 
 const makePuzzle = () => {
   completeGrid = JSON.parse(document.getElementById('textarea').value)
@@ -14,11 +15,12 @@ const makePuzzle = () => {
   completeGrid.colSumsFixed = []
   completeGrid.rowSumsFixed = []
   completeGrid.gridFixed = []
-  completeGrid.difficulty = difficulty
-  completeGrid.difficultyVersion = 0.1
+  completeGrid.difficultySums = difficultySums
+  completeGrid.difficultyGrid = difficultyGrid
+  completeGrid.difficultyVersion = 0.2
 
   _.map(completeGrid.colSums, sum => {
-    if (_.random(true) > difficulty) {
+    if (_.random(true) > difficultySums) {
       completeGrid.colSumsFixed.push(true)
     } else {
       completeGrid.colSumsFixed.push(false)
@@ -26,7 +28,7 @@ const makePuzzle = () => {
   })
 
   _.map(completeGrid.rowSums, sum => {
-    if (_.random(true) > difficulty) {
+    if (_.random(true) > difficultySums) {
       completeGrid.rowSumsFixed.push(true)
     } else {
       completeGrid.rowSumsFixed.push(false)
@@ -36,7 +38,7 @@ const makePuzzle = () => {
   _.map(completeGrid.grid, (row, i) => {
     completeGrid.gridFixed.push([])
     _.map(row, item => {
-      if (_.random(true) > difficulty) {
+      if (_.random(true) > difficultyGrid) {
         completeGrid.gridFixed[i].push(true)
       } else {
         completeGrid.gridFixed[i].push(false)

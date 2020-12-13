@@ -1,5 +1,5 @@
 // @ts-nocheck
-const SIZE = 5
+const SIZE = 7
 
 var initialRow = _.times(SIZE, _.constant(0))
 
