@@ -1,5 +1,5 @@
 // @ts-nocheck
-const getRowSum = (i) => {
+const getRowSum = (grid, i) => {
   var rowDigits = grid[i]
 
   var indexA = rowDigits.indexOf(SIZE)
@@ -14,16 +14,16 @@ const getRowSum = (i) => {
   return _.sum(betweens)
 }
 
-const getRowSums = () => {
+const getRowSums = (grid) => {
   var rowSums = []
   for (let i = 0; i < SIZE; i++) {
-    rowSums.push(getRowSum(i))
+    rowSums.push(getRowSum(grid, i))
   }
 
   return rowSums;
 }
 
-const getColSum = (j) => {
+const getColSum = (grid, j) => {
   var colDigits = _.map(_.clone(grid), (item) => {
     return item[j]
   })
@@ -41,10 +41,10 @@ const getColSum = (j) => {
   return _.sum(betweens)
 }
 
-const getColSums = () => {
+const getColSums = (grid) => {
   var colSums = []
   for (let i = 0; i < SIZE; i++) {
-    colSums.push(getColSum(i))
+    colSums.push(getColSum(grid, i))
   }
   return colSums
 }

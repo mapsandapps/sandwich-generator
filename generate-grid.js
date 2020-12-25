@@ -113,13 +113,13 @@ const setGrid = () => {
 const printGrid = () => {
   var html = ''
   var json = {
-    colSums: getColSums(),
-    rowSums: getRowSums(),
+    colSums: getColSums(grid),
+    rowSums: getRowSums(grid),
     grid: grid
   }
 
   html += '<div>&nbsp;&nbsp;';
-  _.each(getColSums(), (sum) => {
+  _.each(getColSums(grid), (sum) => {
     if (sum < 10) {
       html += '&nbsp;&nbsp;' + sum
     } else {
@@ -130,7 +130,7 @@ const printGrid = () => {
 
   _.map(grid, (row, i) => {
     html += '<div>'
-    var sum = getRowSum(i);
+    var sum = getRowSum(grid, i);
     if (sum < 10) {
       html += '&nbsp;' + sum;
     } else {

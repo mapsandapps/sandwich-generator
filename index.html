@@ -5,24 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sandwich Generator</title>
   <style>
-    #grid, #puzzle {
+    #grid, #puzzle, #reconfiguredGrid {
       font-family: monospace;
+    }
+    #swapped {
+      margin-bottom: 16px;
     }
   </style>
 </head>
 <body>
+  <h1>Generate grid</h1>
   <div id="grid"></div>
   <button id="generate">generate grid</button>
   <button id="findDot">find dot</button>
-  <br /><br />
-  <div><b>OR</b></div>
-  <br /><br />
+  <h1>OR Reconfigure grid (swap some rows & columns)</h1>
+  <textarea id="reconfigureTextarea" cols="70" rows="7"></textarea><br />
+  <button id="reconfigureGrid">reconfigure grid</button>
+  <div id="swapped"></div>
+  <div id="reconfiguredGrid"></div>
+  <h1>OR Make puzzle from grid</h1>
   <textarea id="textarea" cols="70" rows="7"></textarea><br />
   <button id="makePuzzle">make puzzle from grid</button>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
   <script src="sums.js"></script>
   <script src="generate-grid.js"></script>
   <script src="generate-puzzle.js"></script>
+  <script src="reconfigure-grid.js"></script>
   <div id="puzzle"></div>
 </body>
 </html>
